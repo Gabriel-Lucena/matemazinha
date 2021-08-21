@@ -14,6 +14,34 @@ def verificarsoma(a, b):
 
     print('--------------')
 
+def verificar_se_e_inteiro(numero_real):
+
+    if isinstance(numero_real,int):
+
+        return True
+
+    else:
+
+        return False
+
+
+def simplificar_raiz(raiz):
+
+    if isinstance(raiz ** 0.5,int):
+
+        raiz = raiz ** 0.5
+
+        return round(raiz)
+    
+    else:
+
+        return raiz
+
+def calcular_delta(a,b,c):
+
+    delta = b ** 2 - 4 * a * c
+
+    return delta
 
 def verificaridade(idade):
 
@@ -106,9 +134,7 @@ def segundograu(a, b, c):
 
 def segundograumelhorada(a, b, c):
 
-    delta = b**2 - 4 * a * c
-
-    if delta == 0:
+    if calcular_delta(a,b,c) == 0:
 
         print('Há duas raízes iguais reais ou uma raiz real:')
         print('x_1:')
@@ -120,27 +146,41 @@ def segundograumelhorada(a, b, c):
         print('----')
         print(' ', 2 * a, ' ')
 
-    elif delta > 0:
+    elif calcular_delta(a,b,c) > 0:
 
-        print('Há duas raízes diferentes e reais:')
-        print('x_1:')
-        print(-1 * b, ' - sqrt(', delta, ')')
-        print('--------------------------')
-        print('         ', 2 * a, '        ')
-        print('x_2:')
-        print(-1 * b, ' + sqrt(', delta, ')')
-        print('--------------------------')
-        print('         ', 2 * a, '        ')
+        if verificar_se_e_inteiro(simplificar_raiz(calcular_delta(a,b,c))) == True:
+
+            print('Há duas raízes diferentes e reais:')
+            print('x_1:')
+            print(-1 * b, ' - ', calcular_delta(a,b,c) ** 0.5)
+            print('--------------------------')
+            print('         ', 2 * a, '        ')
+            print('x_2:')
+            print(-1 * b, ' + ', calcular_delta(a,b,c) ** 0.5)
+            print('--------------------------')
+            print('         ', 2 * a, '        ')       
+
+        else:
+
+            print('Há duas raízes diferentes e reais:')
+            print('x_1:')
+            print(-1 * b, ' - sqrt(', calcular_delta(a,b,c), ')')
+            print('--------------------------')
+            print('         ', 2 * a, '        ')
+            print('x_2:')
+            print(-1 * b, ' + sqrt(', calcular_delta(a,b,c), ')')
+            print('--------------------------')
+            print('         ', 2 * a, '        ')
 
     else:
 
         print('Há duas raízes complexas conjugadas:')
         print('x_1:')
-        print(-1 * b, ' - sqrt(', abs(delta), ') i')
+        print(-1 * b, ' - sqrt(', abs(calcular_delta(a,b,c)), ') i')
         print('--------------------------')
         print('         ', 2 * a, '        ')
         print('x_2:')
-        print(-1 * b, ' + sqrt(', abs(delta), ') i')
+        print(-1 * b, ' + sqrt(', abs(calcular_delta(a,b,c)), ') i')
         print('--------------------------')
         print('         ', 2 * a, '        ')
 
