@@ -1,8 +1,27 @@
 import math
 from decimal import Decimal
 
+def classificar_triangulo_pelos_lados(lado_a,lado_b,lado_c):
 
-def verificarsoma(a, b):
+    if lado_a == lado_b or lado_b == lado_c or lado_a == lado_c:
+
+        print('--------------------------------------')
+        print('O triângulo é isóceles.')
+        print('--------------------------------------')
+
+    elif lado_a == lado_b and lado_b == lado_c and lado_c == lado_a:
+
+        print('--------------------------------------')
+        print('O triângulo é equilátero.')
+        print('--------------------------------------')
+
+    elif lado_a != lado_b and lado_c != lado_a and lado_c != lado_a:
+
+        print('--------------------------------------')
+        print('O triângulo é escaleno.')
+        print('--------------------------------------')
+
+def verificar_soma(a, b):
     c = a + b
 
     if c < 0:
@@ -24,6 +43,80 @@ def verificar_se_e_inteiro(numero_real):
 
         return False
 
+def verificar_se_triangulo_existe(lado_a,lado_b,lado_c,angulo_a,angulo_b,angulo_c):
+    
+    if math.fabs(lado_b - lado_c) < lado_a < lado_b + lado_c and math.fabs(lado_a - lado_c) < lado_b < lado_a + lado_c and math.fabs(lado_a - lado_b) < lado_c < lado_b + lado_a and angulo_a + angulo_b + angulo_c == 180:
+      
+        print('--------------------------------------')
+        print('O triângulo existe.')
+        print('--------------------------------------')
+
+        return True
+
+    else:
+
+        print('--------------------------------------')
+        print('Estas medidas não são de um triângulo.')
+        print('--------------------------------------')
+
+        return False
+
+def verificar_se_triangulo_e_retangulo(lado_a,lado_b,lado_c,angulo_a,angulo_b,angulo_c):
+
+    if (lado_a ** 2 + lado_b ** 2 == lado_c ** 2 or lado_b ** 2 + lado_c ** 2 == lado_a ** 2 or lado_a ** 2 + lado_c ** 2 == lado_b ** 2) and (angulo_a == 90 or angulo_b == 90 or angulo_c == 90):
+          
+        print('--------------------------------------')
+        print('O triângulo é retângulo.')
+        print('--------------------------------------')
+
+        classificar_triangulo_pelos_lados(lado_a,lado_b,lado_c)
+
+        return True
+
+    else:
+
+        return False
+
+def verificar_se_triangulo_e_obtusangulo(lado_a,lado_b,lado_c,angulo_a,angulo_b,angulo_c):
+
+    if (lado_a ** 2 + lado_b ** 2 > lado_c ** 2 or lado_c ** 2 + lado_b ** 2 > lado_a ** 2 or lado_a ** 2 + lado_c ** 2 > lado_b ** 2) and (angulo_a > 90 or angulo_b > 90 or angulo_c > 90):
+
+        print('--------------------------------------')
+        print('O triângulo é obtusângulo.')
+        print('--------------------------------------')
+
+        classificar_triangulo_pelos_lados(lado_a,lado_b,lado_c)
+
+        return True
+
+    else:
+
+        return False
+
+def verificar_se_triangulo_e_acutangulo(lado_a,lado_b,lado_c,angulo_a,angulo_b,angulo_c):
+
+    if (lado_a**2 + lado_b**2 < lado_c**2 or lado_a**2 + lado_c**2 < lado_b**2 or lado_c**2 + lado_b**2 < lado_a**2) and (angulo_a < 90 or angulo_b < 90 or angulo_c < 90):
+
+        print('--------------------------------------')
+        print('O triângulo é acutângulo.')
+        print('--------------------------------------')
+
+        classificar_triangulo_pelos_lados(lado_a,lado_b,lado_c)
+
+        return True
+
+    else:
+
+        return False
+
+def interface_terminal():
+
+    print('Digite os coeficientes da função:')
+    a = int(input('a: '))
+    b = int(input('b: '))
+    c = int(input('c: '))
+
+    return a,b,c
 
 def simplificar_raiz(raiz):
 
@@ -43,7 +136,7 @@ def calcular_delta(a,b,c):
 
     return delta
 
-def verificaridade(idade):
+def verificar_idade(idade):
 
     if idade < 12:
         print('criança')
@@ -58,8 +151,7 @@ def verificaridade(idade):
 
 # Versão simplificada em que se mostra somente o resultado em decimais
 
-
-def segundograu(a, b, c):
+def segundo_grau(a, b, c):
 
     delta = b**2 - 4 * a * c
 
@@ -131,8 +223,7 @@ def segundograu(a, b, c):
 # Versão melhorada
 # Aparece a resposta como se fosse feito à mão
 
-
-def segundograumelhorada(a, b, c):
+def segundo_grau_melhorada(a, b, c):
 
     if calcular_delta(a,b,c) == 0:
 
@@ -187,91 +278,24 @@ def segundograumelhorada(a, b, c):
     print('----------------------')
 
 
-def triangulo(a, b, c, angulo1, angulo2, angulo3):
+def triangulo(lado_a, lado_b, lado_c, angulo_a, angulo_b, angulo_c):
 
-  if math.fabs(b - c) < a < b + c and math.fabs(a - c) < b < a + c and math.fabs(a - b) < c < b + a and angulo1 + angulo2 + angulo3 == 180:
+  if verificar_se_triangulo_existe(lado_a, lado_b, lado_c, angulo_a, angulo_b, angulo_c):
 
-      print('--------------------------------------')
-      print('O triângulo existe.')
-      print('--------------------------------------')
+    if verificar_se_triangulo_e_retangulo(lado_a,lado_b,lado_c,angulo_a,angulo_b,angulo_c):
 
-      if (a**2 + b**2 == c**2 or b**2 + c**2 == a**2 or a**2 + c**2 == b**2) and (angulo1 == 90 or angulo2 == 90 or angulo3 == 90):
+        return
 
-          print('--------------------------------------')
-          print('O triângulo é retângulo.')
-          print('--------------------------------------')
+    elif verificar_se_triangulo_e_obtusangulo(lado_a,lado_b,lado_c,angulo_a,angulo_b,angulo_c):
 
-          if a == b or b == c or a == c:
-              print('--------------------------------------')
-              print('O triângulo é isóceles.')
-              print('--------------------------------------')
+        return
 
-          elif a == b and b == c and c == a:
-              print('--------------------------------------')
-              print('O triângulo é equilátero.')
-              print('--------------------------------------')
+    elif verificar_se_triangulo_e_acutangulo(lado_a,lado_b,lado_c,angulo_a,angulo_b,angulo_c):
 
-          elif a != b and c != a and c != a:
-              print('--------------------------------------')
-              print('O triângulo é escaleno.')
-              print('--------------------------------------')
-
-      elif (a**2 + b**2 > c**2 or c**2 + b**2 > a**2 or a**2 + c**2 > b**2) and (angulo1 > 90 or angulo2 > 90 or angulo3 > 90):
-
-          print('--------------------------------------')
-          print('O triângulo é obtusângulo.')
-          print('--------------------------------------')
-
-          if a == b or b == c or a == c:
-              print('--------------------------------------')
-              print('O triângulo é isóceles.')
-              print('--------------------------------------')
-
-          elif a == b and b == c and c == a:
-              print('--------------------------------------')
-              print('O triângulo é equilátero.')
-              print('--------------------------------------')
-
-          elif a != b and c != a and c != a:
-              print('--------------------------------------')
-              print('O triângulo é escaleno.')
-              print('--------------------------------------')
-
-      elif (a**2 + b**2 < c**2 or a**2 + c**2 < b**2 or c**2 + b**2 < a**2) and (angulo1 < 90 or angulo2 < 90 or angulo3 < 90):
-
-          print('--------------------------------------')
-          print('O triângulo é acutângulo.')
-          print('--------------------------------------')
-
-          if a == b or b == c or a == c:
-              print('--------------------------------------')
-              print('O triângulo é isóceles.')
-              print('--------------------------------------')
-
-          elif a == b and b == c and c == a:
-              print('--------------------------------------')
-              print('O triângulo é equilátero.')
-              print('--------------------------------------')
-
-          elif a != b and c != a and c != a:
-              print('--------------------------------------')
-              print('O triângulo é escaleno.')
-              print('--------------------------------------')
-
-      else:
-
-          print('--------------------------------------')
-          print('O triângulo não é retângulo.')
-          print('--------------------------------------')
-
-  else:
-
-      print('--------------------------------------')
-      print('Estas medidas não são de um triângulo.')
-      print('--------------------------------------')
+        return
 
 
-def triangulosemangulo(a, b, c):
+def triangulo_sem_angulo(a, b, c):
 
     if math.fabs(b - c) < a < b + c and math.fabs(a - c) < b < a + c and math.fabs(a - b) < c < b + a:
 
