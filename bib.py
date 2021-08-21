@@ -151,72 +151,108 @@ def verificar_idade(idade):
 
 # Versão simplificada em que se mostra somente o resultado em decimais
 
-def segundo_grau(a, b, c):
+def segundo_grau_calcular_raiz_1(a,b,c):
 
-    delta = b**2 - 4 * a * c
+    raiz_1 = (-b - math.sqrt(calcular_delta(a,b,c))) / (2 * a)
+
+    return raiz_1
+
+def segundo_grau_calcular_raiz_2(a,b,c):
+
+    raiz_2 = (-b + math.sqrt(calcular_delta(a,b,c))) / (2 * a)
+
+    return raiz_2
+
+def segundo_grau_convertido_raiz_1(a,b,c):
+
+    x1_convertido = Decimal(segundo_grau_calcular_raiz_1(a,b,c))
+
+    return x1_convertido
+
+def segundo_grau_convertido_raiz_2(a,b,c):
+
+    x2_convertido = Decimal(segundo_grau_calcular_raiz_2(a,b,c))
+
+    return x2_convertido
+
+def segundo_grau_comparar_raizes(a,b,c):
+
+    if segundo_grau_calcular_raiz_1(a,b,c) == segundo_grau_convertido_raiz_1(a,b,c) and segundo_grau_calcular_raiz_2(a,b,c) == segundo_grau_convertido_raiz_2(a,b,c):
+
+        print('Há duas raízes diferentes:')
+        print('x_1')
+        print(segundo_grau_convertido_raiz_1(a,b,c))
+        print('x_2')
+        print(segundo_grau_convertido_raiz_2(a,b,c))
+
+        return True
+
+    else:
+
+        print('Há duas raízes diferentes:')
+        print('x_1')
+        print(segundo_grau_calcular_raiz_1(a,b,c))
+        print('x_2')
+        print(segundo_grau_calcular_raiz_2(a,b,c))
+
+        return False
+
+def segundo_grau_calcular_raizes_complexas(a,b,c):
+
+    delta_negativo = -calcular_delta(a,b,c)
+
+    raiz_1 = (-b) / (2 * a)
+    raiz_complexa_1 = (- math.sqrt(delta_negativo)) / (2 * a)
+    raiz_2 = (-b) / (2 * a)
+    raiz_complexa_2 = (+ math.sqrt(delta_negativo)) / (2 * a)
+
+    
+    print('Há duas raízes complexas:')
+    print('x_1')
+    print(' Parte real:', raiz_1)
+    print(' Parte imaginária:', raiz_complexa_1)
+    print('x_2')
+    print(' Parte real:', raiz_2)
+    print(' Parte imaginária:', raiz_complexa_2)
+
+    return delta_negativo
+
+def segundo_grau_calcular_raiz(a,b):
+
+    raiz = (-b) / (2 * a)
+    raiz_convertida = Decimal(raiz)
+
+    if raiz == raiz_convertida:
+
+        print('Há duas raízes iguais ou somente uma raiz:')
+        print('x')
+        print(raiz_convertida)
+
+    else:
+
+        print('Há duas raízes iguais ou somente uma raiz:')
+        print('x')
+        print(raiz)
+
+def segundo_grau(a,b,c):
 
     # Delta maior que 0
 
-    if delta > 0:
-        x1 = (-b - math.sqrt(delta)) / (2 * a)
-        x2 = (-b + math.sqrt(delta)) / (2 * a)
+    if calcular_delta(a,b,c) > 0:
 
-        x1Convertido = Decimal(x1)
-        x2Convertido = Decimal(x2)
-
-        if x1 == x1Convertido:
-
-            print('Há duas raízes diferentes:')
-            print('x_1')
-            print(x1Convertido)
-            print('x_2')
-            print(x2Convertido)
-
-        else:
-
-            print('Há duas raízes diferentes:')
-            print('x_1')
-            print(x1)
-            print('x_2')
-            print(x2)
+        segundo_grau_comparar_raizes(a,b,c)
 
     # Delta menor que 0
 
-    elif delta < 0:
+    elif calcular_delta(a,b,c) < 0:
 
-        deltaNegativo = -delta
-
-        x1 = (-b) / (2 * a)
-        x1i = (- math.sqrt(deltaNegativo)) / (2 * a)
-        x2 = (-b) / (2 * a)
-        x2i = (+ math.sqrt(deltaNegativo)) / (2 * a)
-
-        # Se x1 for igual ao aproximado apresenta-se o aproximado, senão apresenta-se o próprio x1
-
-        print('Há duas raízes complexas:')
-        print('x_1')
-        print(' Parte real:', x1)
-        print(' Parte imaginária:', x1i)
-        print('x_2')
-        print(' Parte real:', x2)
-        print(' Parte imaginária:', x2i)
+        segundo_grau_calcular_raizes_complexas(a,b,c)
 
     # Delta igual a 0
 
     else:
 
-        x = (-b) / (2 * a)
-        xConvertido = Decimal(x)
-
-        if x == xConvertido:
-            print('Há duas raízes iguais ou somente uma raiz:')
-            print('x')
-            print(xConvertido)
-
-        else:
-            print('Há duas raízes iguais ou somente uma raiz:')
-            print('x')
-            print(x)
+        segundo_grau_calcular_raiz(a,b)
 
     print('----------------------')
 
@@ -277,7 +313,6 @@ def segundo_grau_melhorada(a, b, c):
 
     print('----------------------')
 
-
 def triangulo(lado_a, lado_b, lado_c, angulo_a, angulo_b, angulo_c):
 
   if verificar_se_triangulo_existe(lado_a, lado_b, lado_c, angulo_a, angulo_b, angulo_c):
@@ -293,7 +328,6 @@ def triangulo(lado_a, lado_b, lado_c, angulo_a, angulo_b, angulo_c):
     elif verificar_se_triangulo_e_acutangulo(lado_a,lado_b,lado_c,angulo_a,angulo_b,angulo_c):
 
         return
-
 
 def triangulo_sem_angulo(a, b, c):
 
