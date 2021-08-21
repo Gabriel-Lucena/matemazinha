@@ -43,7 +43,7 @@ def verificar_se_e_inteiro(numero_real):
 
         return False
 
-def verificar_se_triangulo_existe(lado_a,lado_b,lado_c,angulo_a,angulo_b,angulo_c):
+def verificar_se_triangulo_existe_com_angulos(lado_a,lado_b,lado_c,angulo_a,angulo_b,angulo_c):
     
     if math.fabs(lado_b - lado_c) < lado_a < lado_b + lado_c and math.fabs(lado_a - lado_c) < lado_b < lado_a + lado_c and math.fabs(lado_a - lado_b) < lado_c < lado_b + lado_a and angulo_a + angulo_b + angulo_c == 180:
       
@@ -57,6 +57,42 @@ def verificar_se_triangulo_existe(lado_a,lado_b,lado_c,angulo_a,angulo_b,angulo_
 
         print('--------------------------------------')
         print('Estas medidas não são de um triângulo.')
+        print('--------------------------------------')
+
+        return False
+
+def verificar_se_triangulo_existe_simples(lado_a,lado_b,lado_c):
+
+    if math.fabs(lado_b - lado_c) < lado_a < lado_b + lado_c and math.fabs(lado_a - lado_c) < lado_b < lado_a + lado_c and math.fabs(lado_a - lado_b) < lado_c < lado_b + lado_a:
+
+        print('--------------------------------------')
+        print('O triângulo existe.')
+        print('--------------------------------------')
+
+        return True 
+
+    else:
+
+        print('--------------------------------------')
+        print('O triângulo não existe.')
+        print('--------------------------------------')
+
+        return False
+
+def verificar_se_triangulo_e_retangulo_com_pitagoras(lado_a,lado_b,lado_c):
+
+    if lado_a ** 2 + lado_b ** 2 == lado_c ** 2 or lado_b ** 2 + lado_c ** 2 == lado_a ** 2 or lado_a ** 2 + lado_c ** 2 == lado_b ** 2:
+
+        print('--------------------------------------')
+        print('O triângulo é retângulo.')
+        print('--------------------------------------')
+
+        return True
+
+    else:
+
+        print('--------------------------------------')
+        print('O triângulo não é retângulo.')
         print('--------------------------------------')
 
         return False
@@ -315,7 +351,7 @@ def segundo_grau_melhorada(a, b, c):
 
 def triangulo(lado_a, lado_b, lado_c, angulo_a, angulo_b, angulo_c):
 
-  if verificar_se_triangulo_existe(lado_a, lado_b, lado_c, angulo_a, angulo_b, angulo_c):
+  if verificar_se_triangulo_existe_com_angulos(lado_a, lado_b, lado_c, angulo_a, angulo_b, angulo_c):
 
     if verificar_se_triangulo_e_retangulo(lado_a,lado_b,lado_c,angulo_a,angulo_b,angulo_c):
 
@@ -329,45 +365,14 @@ def triangulo(lado_a, lado_b, lado_c, angulo_a, angulo_b, angulo_c):
 
         return
 
-def triangulo_sem_angulo(a, b, c):
+def triangulo_sem_angulo(lado_a, lado_b, lado_c):
 
-    if math.fabs(b - c) < a < b + c and math.fabs(a - c) < b < a + c and math.fabs(a - b) < c < b + a:
+    if verificar_se_triangulo_existe_simples(lado_a,lado_b,lado_c):
 
-        print('--------------------------------------')
-        print('O triângulo existe')
-        print('--------------------------------------')
+        if verificar_se_triangulo_e_retangulo_com_pitagoras(lado_a,lado_b,lado_c):
 
-        if a**2 + b**2 == c**2 or b**2 + c**2 == a**2 or a**2 + c**2 == b**2:
-
-            print('--------------------------------------')
-            print('O triângulo é retângulo.')
-            print('--------------------------------------')
-
-            if a == b or b == c or a == c:
-                print('--------------------------------------')
-                print('O triângulo é isóceles.')
-                print('--------------------------------------')
-
-        elif a**2 + b**2 > c**2 or c**2 + b**2 > a**2 or a**2 + c**2 > b**2:
-
-            print('--------------------------------------')
-            print('O triângulo é obtusângulo.')
-            print('--------------------------------------')
-
-        elif a**2 + b**2 < c**2 or a**2 + c**2 < b**2 or c**2 + b**2 < a**2:
-
-            print('--------------------------------------')
-            print('O triângulo é acutângulo.')
-            print('--------------------------------------')
+            classificar_triangulo_pelos_lados(lado_a,lado_b,lado_c)
 
         else:
 
-            print('--------------------------------------')
-            print('O triângulo não é retângulo.')
-            print('--------------------------------------')
-
-    else:
-
-        print('--------------------------------------')
-        print('Estas medidas não são de um triângulo.')
-        print('--------------------------------------')
+            return
