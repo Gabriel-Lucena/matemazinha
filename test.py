@@ -1,12 +1,7 @@
-import math
-from decimal import Decimal
-from os import PathLike
-
 from bib import *
 
-print('Digite os coeficientes da função:')
-a = int(input('a: '))
-b = int(input('b: '))
-c = int(input('c: '))
+funcao = funcao_segundo_grau(1,2,3)
 
-segundograumelhorada(a,b,c)
+funcao.encontrar_raizes()
+funcao.encontrar_concavidade()
+funcao.encontrar_ponto_de_maximo_ou_minimo()
