@@ -1,5 +1,6 @@
 import math
 from decimal import Decimal
+from tkinter import StringVar
 
 def classificar_triangulo_pelos_lados(lado_a,lado_b,lado_c):
 
@@ -145,14 +146,14 @@ def verificar_se_triangulo_e_acutangulo(lado_a,lado_b,lado_c,angulo_a,angulo_b,a
 
         return False
 
-def interface_terminal():
+def interface_terminal_com_segundo_grau():
 
     print('Digite os coeficientes da função:')
     a = int(input('a: '))
     b = int(input('b: '))
     c = int(input('c: '))
 
-    return a,b,c
+    segundo_grau_melhorada(a,b,c)
 
 def simplificar_raiz(raiz):
 
@@ -184,8 +185,6 @@ def verificar_idade(idade):
         print('idoso')
 
     print('----------------------')
-
-# Versão simplificada em que se mostra somente o resultado em decimais
 
 def segundo_grau_calcular_raiz_1(a,b,c):
 
@@ -254,6 +253,8 @@ def segundo_grau_calcular_raizes_complexas(a,b,c):
     return delta_negativo
 
 def segundo_grau_calcular_raiz(a,b):
+
+    # Versão simplificada em que se mostra somente o resultado em decimais
 
     raiz = (-b) / (2 * a)
     raiz_convertida = Decimal(raiz)
@@ -365,6 +366,66 @@ def triangulo(lado_a, lado_b, lado_c, angulo_a, angulo_b, angulo_c):
 
         return
 
+def exibir_maximo_ou_minimo(a,b):
+
+    if a == 0:
+
+        print('--------------------------------------')
+        print('Esta não é uma função polinomial do segundo grau.')
+        print('--------------------------------------')
+
+    elif a > 0:
+
+        print('--------------------------------------') 
+        print('A abscissa do ponto mínimo é:')
+        print(determinar_abscissa_do_ponto_maximo_ou_minimo(a,b))
+        print('--------------------------------------')
+
+    else:
+
+        print('--------------------------------------') 
+        print('A abscissa do ponto máximo é:')
+        print(determinar_abscissa_do_ponto_maximo_ou_minimo(a,b))
+        print('--------------------------------------')
+
+def determinar_abscissa_do_ponto_maximo_ou_minimo(a,b):
+
+        if a == 0:
+
+            return False
+
+        else:
+
+            abscissa_maximo_ou_minimo = - b * ( 2 * a ) ** -1
+
+            return abscissa_maximo_ou_minimo
+
+def determinar_ordenada_do_ponto_maximo_ou_minimo(a,b,c):
+
+    if a == 0:
+
+        return False
+
+    else:
+
+        ordenada_do_ponto_maximo = -1 * calcular_delta(a,b,c) * ( 4 * a ) ** -1
+
+        return ordenada_do_ponto_maximo
+
+def teste_de_concavidade(a):
+
+    if a == 0:
+
+        return False
+
+    elif a > 0:
+
+        return 'A função tem a concavidade voltada para cima.'
+
+    else:
+
+        return 'A função tem a concavidade voltada para baixo.'
+
 def triangulo_sem_angulo(lado_a, lado_b, lado_c):
 
     if verificar_se_triangulo_existe_simples(lado_a,lado_b,lado_c):
@@ -376,3 +437,32 @@ def triangulo_sem_angulo(lado_a, lado_b, lado_c):
         else:
 
             return
+
+class funcao_segundo_grau:
+
+    def __init__(self, a, b, c) -> None:
+
+        self.a = a
+        self.b = b
+        self.c = c
+
+    def encontrar_raizes(self):
+
+        print('--------------------------------------')
+        segundo_grau_melhorada(self.a, self.b, self.c)
+        print('--------------------------------------')
+
+    def encontrar_concavidade(self):
+
+        print('--------------------------------------')
+        print(teste_de_concavidade(self.a))
+        print('--------------------------------------')
+
+    def encontrar_ponto_de_maximo_ou_minimo(self):
+
+        print('--------------------------------------')
+        print('A abscissa:')
+        print(determinar_abscissa_do_ponto_maximo_ou_minimo(self.a,self.b))
+        print('A ordenada:')
+        print(determinar_ordenada_do_ponto_maximo_ou_minimo(self.a,self.b,self.c))
+        print('--------------------------------------')
