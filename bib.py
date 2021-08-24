@@ -438,7 +438,7 @@ def triangulo_sem_angulo(lado_a, lado_b, lado_c):
 
             return
 
-class funcao_segundo_grau:
+class FuncaoSegundoGrau:
 
     def __init__(self, a, b, c) -> None:
 
