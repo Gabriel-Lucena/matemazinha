@@ -1,7 +1,5 @@
-from bib import *
+from funcao_segundo_grau import *
 
-funcao = funcao_segundo_grau(1,2,3)
+funcao = FuncaoSegundoGrau(1,0,-4)
 
 funcao.encontrar_raizes()
-funcao.encontrar_concavidade()
-funcao.encontrar_ponto_de_maximo_ou_minimo()
