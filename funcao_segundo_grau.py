@@ -1,7 +1,4 @@
-from bib import segundo_grau_melhorada
-from bib import teste_de_concavidade
-from bib import determinar_abscissa_do_ponto_maximo_ou_minimo
-from bib import determinar_ordenada_do_ponto_maximo_ou_minimo
+from bib_segundo import determinar_ponto_do_maximo_ou_minimo, segundo_grau_melhorada, teste_de_concavidade
 
 
 class FuncaoSegundoGrau:
@@ -17,7 +14,7 @@ class FuncaoSegundoGrau:
         print('--------------------------------------')
         segundo_grau_melhorada(self.a, self.b, self.c)
         print('--------------------------------------')
-        
+
     def encontrar_concavidade(self):
 
         print('--------------------------------------')
@@ -28,7 +25,7 @@ class FuncaoSegundoGrau:
 
         print('--------------------------------------')
         print('A abscissa:')
-        print(determinar_abscissa_do_ponto_maximo_ou_minimo(self.a, self.b))
+        print(determinar_ponto_do_maximo_ou_minimo(self.a, self.b, self.c)[0])
         print('A ordenada:')
-        print(determinar_ordenada_do_ponto_maximo_ou_minimo(self.a, self.b, self.c))
+        print(determinar_ponto_do_maximo_ou_minimo(self.a, self.b, self.c)[1])
         print('--------------------------------------')
